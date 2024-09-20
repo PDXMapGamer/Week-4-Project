@@ -9,7 +9,26 @@
     <title>Guestbook</title>
   </head>
   <body>
+    <header id="title">
+      <h1>Guestbook</h1>
+    </header>
     <!-- TODO We need a form to collect user data. -->
-    <!-- TODO Container to display user feedback -->
+    <section id="form-section">
+      <form id="input-form">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username-input" required placeholder="Enter your username" />
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email-input" required placeholder="name@example.com" />
+        <label for="favourite-animal">Favourite Animal:</label>
+        <input type="text" name="favourite-animal" id="animal-input" required placeholder="You will be judged" />
+        <label for="feedback">Feedback:</label>
+        <input type="text" name="feedback" id="feedback-input" required placeholder="Enter your feedback here" />
+        <button type="submit" id="submit-button">Submit</button>
+      </form>
+    </section>
+    <section id="feedback-section">
+      <p>HIIII</p>
+      <!-- TODO Container to display user feedback -->
+    </section>
   </body>
 </html>

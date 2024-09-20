@@ -1,6 +1,14 @@
 //TODO DOM manipulation.
+const form = document.getElementById("input-form");
+const feedbackContainer = document.getElementById("container-section");
+const submitButton = document.getElementById("submit-button");
 
-//TODO Select form and feedback container.
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+  const formData = new FormData(form);
+  const formValues = Object.fromEntries(formData);
+  console.log(formValues);
+});
 
 //TODO Form: Event to submit form data.
 
