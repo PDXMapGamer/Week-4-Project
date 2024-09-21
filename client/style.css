@@ -23,6 +23,17 @@ body {
   margin: auto;
   margin-top: 5px;
 }
+#feedback-section {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) 2.5fr;
+  grid-template-rows: 50px;
+  grid-column-gap: 5px;
+  grid-row-gap: 5px;
+}
+.grid-item {
+  font-size: 24px;
+  overflow: scroll;
+}
 /* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

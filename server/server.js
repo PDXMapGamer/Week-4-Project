@@ -23,8 +23,9 @@ app.get("/", (request, response) => {
   response.json({ message: "You are currently at the root route" });
 });
 //TODO Create READ and CREATE route, use SQL to do what we need.
-app.get("/get-data", (request, response) => {
-  response.json({ message: ` Recieving data from the database` });
+app.get("/get-data", async (request, response) => {
+  const query = await db.query(`SELECT * FROM guests `);
+  response.json(query.rows);
 });
 
 app.post("/send-data", (request, response) => {
