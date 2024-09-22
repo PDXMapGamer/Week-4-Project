@@ -19,7 +19,7 @@ form.addEventListener("submit", async (event) => {
 
 async function onRefresh() {
   try {
-    const fetchedData = await fetch("http://localhost:8080/get-data", {
+    const fetchedData = await fetch("https://week-4-project-cxss.onrender.com/get-data", {
       method: "GET",
       headers: {
         "Content-type": "application/json",
@@ -37,7 +37,7 @@ async function onRefresh() {
 }
 
 async function addFormValuesToDatabase(formValues) {
-  const fetchedResponse = await fetch("http://localhost:8080/send-data", {
+  const fetchedResponse = await fetch("https://week-4-project-cxss.onrender.com/send-data", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
