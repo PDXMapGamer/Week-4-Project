@@ -1,4 +1,3 @@
-//TODO DOM manipulation.
 const form = document.getElementById("input-form");
 const feedbackContainer = document.getElementById("feedback-section");
 const submitButton = document.getElementById("submit-button");
@@ -10,8 +9,8 @@ form.addEventListener("submit", (event) => {
   event.preventDefault();
   const formData = new FormData(form);
   const formValues = Object.fromEntries(formData);
-  addFormValuesToDatabase(formValues); //TODO
-  appendFeedback(formValues); //TODO
+  addFormValuesToDatabase(formValues);
+  appendFeedback(formValues);
 });
 
 async function onRefresh() {
@@ -27,23 +26,26 @@ async function onRefresh() {
   });
 }
 
-function addFormValuesToDatabase(formValues) {}
+async function addFormValuesToDatabase(formValues) {
+  await fetch("http://localhost:8080/send-data", {
+    method: "POST",
+    headers: {
+      "Content-type": "application/json",
+    },
+    body: JSON.stringify(formValues),
+  });
+}
 
 function appendFeedback(parameter) {
   feedbackContainerRows++;
   feedbackContainer.style.gridTemplateRows = `50px repeat(${feedbackContainerRows}, 100px)`;
-  const username = createGridItem();
-  const email = createGridItem();
-  const favouriteAnimal = createGridItem();
-  const feedback = createGridItem();
-  username.textContent = parameter.username;
-  email.textContent = parameter.email;
-  favouriteAnimal.textContent = parameter.favourite_animal;
-  feedback.textContent = parameter.feedback;
-  feedbackContainer.append(username);
-  feedbackContainer.append(email);
-  feedbackContainer.append(favouriteAnimal);
-  feedbackContainer.append(feedback);
+  Object.entries(parameter).forEach((element) => {
+    if (element[0] != "id") {
+      const appendee = createGridItem();
+      appendee.textContent = element[1];
+      feedbackContainer.append(appendee);
+    }
+  });
 }
 
 function createGridItem() {
@@ -51,17 +53,5 @@ function createGridItem() {
   gridItem.classList.add("grid-item");
   return gridItem;
 }
-//TODO Form: Event to submit form data.
 
 //! When I finish the project, DO NOT forget to replace local host url with the deployed url.
-//! We need to fetch the create endpoint to send form values to the server.
-// fetch("localhost-url/endpoint"),{
-//   method:
-//   headers:
-//   body:
-// }
-
-//TODO FEEDBACK CONTAINER.
-//TODO Fetch the READ endpoint to access the data.
-
-//TODO Create DOM elements to contain the data.

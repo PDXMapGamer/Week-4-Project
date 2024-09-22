@@ -28,6 +28,15 @@ app.get("/get-data", async (request, response) => {
   response.json(query.rows);
 });
 
-app.post("/send-data", (request, response) => {
-  response.json({ message: `Sending data to the database` });
+app.post("/send-data", async (request, response) => {
+  const username = request.body.username;
+  const email = request.body.email;
+  const favAnimal = request.body.favourite_animal;
+  const feedback = request.body.feedback;
+  const query = await db.query(
+    `INSERT INTO guests(username, email, favourite_animal, feedback)
+    VALUES ($1, $2, $3, $4)`,
+    [username, email, favAnimal, feedback]
+  );
+  response.json({ message: `Data has been added to the database` });
 });
