@@ -9,6 +9,6 @@
 # TODO STRETCH GOALS
 
     🏹 Provide additional functionality on the form, for example, by adding form validation or other options. #DONE
-    🏹 Style the page excellently, for example, by adding extra UX considerations or animations.
-    🏹 Add a delete button to each message and a DELETE route in the server.
-    🏹 Create an option for users to like others’ posts.
+    🏹 Style the page excellently, for example, by adding extra UX considerations or animations. DONE?
+    🏹 Add a delete button to each message and a DELETE route in the server. UNDONE
+    🏹 Create an option for users to like others’ posts. UNDONE

@@ -24,6 +24,10 @@ h2 {
 #input-form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+input {
+  width: 60%;
 }
 #submit-button {
   width: 50px;
@@ -36,10 +40,15 @@ h2 {
   grid-template-rows: 50px;
   grid-column-gap: 5px;
   grid-row-gap: 5px;
+  border: solid;
 }
 .grid-item {
   font-size: 24px;
   overflow: scroll;
+}
+button:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 @media (orientation: portrait) {
   .grid-item {

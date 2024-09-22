@@ -5,35 +5,51 @@ let feedbackContainerRows = 0;
 
 onRefresh();
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
   const formData = new FormData(form);
   const formValues = Object.fromEntries(formData);
-  addFormValuesToDatabase(formValues);
-  appendFeedback(formValues);
+  const valid = await addFormValuesToDatabase(formValues);
+  if (valid == true) {
+    appendFeedback(formValues);
+  } else {
+    console.log("no");
+  }
 });
 
 async function onRefresh() {
-  const fetchedData = await fetch("http://localhost:8080/get-data", {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json",
-    },
-  });
-  const databaseData = await fetchedData.json();
-  databaseData.forEach((element) => {
-    appendFeedback(element);
-  });
+  try {
+    const fetchedData = await fetch("http://localhost:8080/get-data", {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json",
+      },
+    });
+    const databaseData = await fetchedData.json();
+    databaseData.forEach((element) => {
+      appendFeedback(element);
+    });
+  } catch {
+    const errorMsg = document.createElement("p");
+    errorMsg.textContent = "Error accessing the server or database";
+    feedbackContainer.append(errorMsg);
+  }
 }
 
 async function addFormValuesToDatabase(formValues) {
-  await fetch("http://localhost:8080/send-data", {
+  const fetchedResponse = await fetch("http://localhost:8080/send-data", {
     method: "POST",
     headers: {
       "Content-type": "application/json",
     },
     body: JSON.stringify(formValues),
   });
+  const response = await fetchedResponse.json();
+  if (response.message == "Failed to add data to the database") {
+    return false;
+  } else {
+    return true;
+  }
 }
 
 function appendFeedback(parameter) {
